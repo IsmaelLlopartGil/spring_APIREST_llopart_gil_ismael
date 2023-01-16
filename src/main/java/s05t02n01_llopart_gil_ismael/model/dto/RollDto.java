@@ -1,4 +1,4 @@
-package s05t02n01_llopart_gil_ismael.views.dto;
+package s05t02n01_llopart_gil_ismael.model.dto;
 
 import java.io.Serializable;
 import java.util.Objects;

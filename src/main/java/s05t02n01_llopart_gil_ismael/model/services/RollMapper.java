@@ -1,9 +1,8 @@
-package s05t02n01_llopart_gil_ismael.controllers.services;
+package s05t02n01_llopart_gil_ismael.model.services;
 
 import java.util.List;
-
 import s05t02n01_llopart_gil_ismael.model.domain.Roll;
-import s05t02n01_llopart_gil_ismael.views.dto.RollDto;
+import s05t02n01_llopart_gil_ismael.model.dto.RollDto;
 
 public interface RollMapper {
 	

@@ -1,11 +1,11 @@
-package s05t02n01_llopart_gil_ismael.controllers.services;
+package s05t02n01_llopart_gil_ismael.model.services;
 
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import s05t02n01_llopart_gil_ismael.model.dto.PlayerDto;
 import s05t02n01_llopart_gil_ismael.model.repository.PlayerRepositoryMysql;
-import s05t02n01_llopart_gil_ismael.views.dto.PlayerDto;
 
 @Service
 public class PlayerServiceImpl implements PlayerService{
