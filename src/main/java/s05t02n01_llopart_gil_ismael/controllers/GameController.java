@@ -10,7 +10,7 @@ public class GameController {
 	@PostMapping
 	public String rollDice (@PathVariable int id) {
 		
-		return "";
+		return "players";
 	}
 	
 	@DeleteMapping
@@ -22,6 +22,6 @@ public class GameController {
 	@GetMapping
 	public String getAllRolls (@PathVariable int id) {
 		
-		return "";
+		return "players";
 	}
 }

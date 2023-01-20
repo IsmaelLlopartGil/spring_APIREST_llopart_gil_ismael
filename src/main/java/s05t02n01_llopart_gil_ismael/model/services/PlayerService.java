@@ -14,4 +14,6 @@ public interface PlayerService {
 
 	public List<PlayerDto> findAll();
 
+	Optional<PlayerDto> findByName(String name);
+
 }

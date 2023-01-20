@@ -10,13 +10,13 @@ public class RankingController {
 	@GetMapping 
 	public String getAverageSuccessRateAllUsers () {
 		
-		return "";
+		return "players";
 	}
 	
 	@GetMapping ("/loser")
 	public String getLoserUser () {
 		
-		return "";
+		return "players";
 	}
 	
 	@GetMapping ("/winner")

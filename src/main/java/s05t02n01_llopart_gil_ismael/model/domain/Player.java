@@ -27,12 +27,15 @@ public class Player implements Serializable {
 	private Integer id;
 
 	@NotBlank(message = "El nom és obligatori.")
-	@Column(name = "name")
+	@Column(name = "name", unique = true, nullable = false)
 	private String name;
 
-	@NotBlank(message = "La data és obligatòria.")
 	@Column(name = "registration_date")
 	private LocalDateTime registrationDate;
+	
+	@NotBlank
+	@Column(name = "password")
+	private String password;
 
 	@OneToMany (mappedBy = "player", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
 	private List<Roll> rolls;
@@ -85,6 +88,14 @@ public class Player implements Serializable {
 		this.registrationDate = registrationDate;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 	@Override
 	public String toString() {
 		return "Player [id=" + id + ", name=" + name + "]";

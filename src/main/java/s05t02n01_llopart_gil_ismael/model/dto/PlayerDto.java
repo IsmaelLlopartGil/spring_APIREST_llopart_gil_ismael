@@ -12,6 +12,7 @@ public class PlayerDto implements Serializable{
 	private int id;
 	private String name;
 	private LocalDateTime registrationDate;
+	private String password;
 	private List<RollDto> rollList;
 	
 	public PlayerDto () {}
@@ -72,5 +73,13 @@ public class PlayerDto implements Serializable{
 			return false;
 		PlayerDto other = (PlayerDto) obj;
 		return id == other.id;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }
