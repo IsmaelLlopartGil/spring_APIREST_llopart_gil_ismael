@@ -6,5 +6,5 @@ import s05t02n01_llopart_gil_ismael.model.domain.Roll;
 
 @Repository
 public interface RollRepositoryMysql extends JpaRepository<Roll, Integer> {
-
+	
 }

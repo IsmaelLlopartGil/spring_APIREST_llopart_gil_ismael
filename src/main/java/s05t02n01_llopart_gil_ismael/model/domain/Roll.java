@@ -1,9 +1,6 @@
 package s05t02n01_llopart_gil_ismael.model.domain;
 
 import java.io.Serializable;
-import java.security.SecureRandom;
-import java.util.Objects;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,7 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "roll")
@@ -26,48 +23,47 @@ public class Roll implements Serializable{
 	@Column(name = "id", unique = true, nullable = false)
 	private Integer id;
 	
-	@NotBlank
+	@NotNull
 	@Column(name = "first_dice")
 	private Integer firstDice;
 	
-	@NotBlank
+	@NotNull
 	@Column(name = "second_dice")
 	private Integer secondDice;
 	
+	@NotNull
 	@ManyToOne (cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
 	@JoinColumn (name="id_player")
 	private Player player;
 	
 	public Roll (Player player) {
 		this.player = player;
-		SecureRandom secureRandom = new SecureRandom();
-		firstDice = secureRandom.nextInt(6 - 1) + 1;
-		secondDice = secureRandom.nextInt(6 - 1) + 1;
 	}
 	
-	public Roll () {}
+	public Roll () {	
+	}
 
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	public Integer getFirstDice() {
+	public int getFirstDice() {
 		return firstDice;
 	}
 
-	public void setFirstDice(Integer firstDice) {
+	public void setFirstDice(int firstDice) {
 		this.firstDice = firstDice;
 	}
 
-	public Integer getSecondDice() {
+	public int getSecondDice() {
 		return secondDice;
 	}
 
-	public void setSecondDice(Integer secondDice) {
+	public void setSecondDice(int secondDice) {
 		this.secondDice = secondDice;
 	}
 
@@ -81,27 +77,5 @@ public class Roll implements Serializable{
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
-	}
-
-	@Override
-	public String toString() {
-		return "Roll [id=" + id + "]";
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Roll other = (Roll) obj;
-		return Objects.equals(id, other.id);
 	}
 }

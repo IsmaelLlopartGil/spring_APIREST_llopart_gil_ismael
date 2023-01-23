@@ -3,15 +3,21 @@ package s05t02n01_llopart_gil_ismael.model.services;
 import java.util.List;
 import java.util.Optional;
 import s05t02n01_llopart_gil_ismael.model.domain.Player;
+import s05t02n01_llopart_gil_ismael.model.dto.PlayerCreationDto;
 import s05t02n01_llopart_gil_ismael.model.dto.PlayerDto;
+import s05t02n01_llopart_gil_ismael.model.dto.PlayerNameAndSuccessRateDto;
 
 public interface PlayerMapper {
 
-	public PlayerDto convertToDto (Player player);
+	PlayerDto convertToDto (Player player);
 	
-	public Player convertToEntity (PlayerDto playerDto);
+	Player convertToEntity (PlayerDto playerDto);
 	
-	public Optional<PlayerDto> convertToOptionalDto (Optional<Player> player);
-	
-	public List<PlayerDto> convertToListDto (List<Player> playerList);
+	Optional<PlayerDto> convertToOptionalDto (Optional<Player> player);
+
+	Player convertToEntity(PlayerCreationDto playerCreationDto);
+
+	List<PlayerNameAndSuccessRateDto> convertToNameAndSuccessDto(List<Player> findAll);
+
+	List<PlayerDto> convertToDto(List<Player> playerList);
 }

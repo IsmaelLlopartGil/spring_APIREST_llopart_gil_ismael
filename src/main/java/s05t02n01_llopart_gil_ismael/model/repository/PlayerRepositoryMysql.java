@@ -10,5 +10,6 @@ import s05t02n01_llopart_gil_ismael.model.domain.Player;
 @Repository
 public interface PlayerRepositoryMysql extends JpaRepository<Player, Integer>  {
 
+	Optional<Player> findOneByEmail (String email);
 	Optional<Player> findOneByName (String name);
 }

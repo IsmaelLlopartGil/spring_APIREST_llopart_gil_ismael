@@ -1,7 +1,7 @@
 package s05t02n01_llopart_gil_ismael.model.dto;
 
 import java.io.Serializable;
-import java.util.Objects;
+import java.security.SecureRandom;
 
 public class RollDto implements Serializable {
 
@@ -11,11 +11,22 @@ public class RollDto implements Serializable {
 	private int firstDice;
 	private int secondDice;
 	private int result;
-	
-	public RollDto () {
+	private int playerId;
+
+
+	public RollDto (int playerId) {
+		SecureRandom secureRandom = new SecureRandom();
+		firstDice = secureRandom.nextInt(6 - 1) + 1;
+		secondDice = secureRandom.nextInt(6 - 1) + 1;
+		setResult();
+		this.playerId = playerId;
 	}
 	
-	public boolean isWinnner () {
+	public RollDto() {
+		
+	}
+	
+	public boolean isWinner () {
 		return result == 7;
 	}
 
@@ -46,6 +57,7 @@ public class RollDto implements Serializable {
 	public int getResult () {
 		return result;
 	}
+	
 	public void setResult() {
 		this.result = firstDice + secondDice;
 	}
@@ -53,26 +65,12 @@ public class RollDto implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
-	@Override
-	public String toString() {
-		return "RollDto [id=" + id + "]";
+	
+	public int getPlayerId() {
+		return playerId;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		RollDto other = (RollDto) obj;
-		return id == other.id;
+	public void setPlayerId(int playerId) {
+		this.playerId = playerId;
 	}
 }

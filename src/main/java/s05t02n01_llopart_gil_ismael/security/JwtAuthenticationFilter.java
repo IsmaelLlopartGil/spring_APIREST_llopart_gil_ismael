@@ -23,10 +23,11 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		try {
 			authCredentials = new ObjectMapper().readValue(request.getReader(), AuthCredentials.class);
 			
-		} catch (Exception e) {}
+		} catch (Exception e) {
+		}
 		
 		UsernamePasswordAuthenticationToken usernamePAT = new UsernamePasswordAuthenticationToken(
-				authCredentials.getName(),
+				authCredentials.getEmail(),
 				authCredentials.getPassword(), 
 				Collections.emptyList()
 				);
@@ -41,7 +42,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 			Authentication authResult) throws IOException, ServletException {
 		
 		UserDetailsImpl userDetails = (UserDetailsImpl) authResult.getPrincipal();
-		String token = TokenUtils.createToken(userDetails.getUsername());
+		String token = TokenUtils.createToken(userDetails.getName(), userDetails.getUsername());
 		
 		response.addHeader("Authorization", "Bearer " + token);
 		response.getWriter().flush();

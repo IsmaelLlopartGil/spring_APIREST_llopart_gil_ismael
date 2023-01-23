@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -26,24 +25,32 @@ public class Player implements Serializable {
 	@Column(name = "id", unique = true, nullable = false)
 	private Integer id;
 
-	@NotBlank(message = "El nom és obligatori.")
-	@Column(name = "name", unique = true, nullable = false)
+	@Column(name = "name")
 	private String name;
 
 	@Column(name = "registration_date")
 	private LocalDateTime registrationDate;
 	
 	@NotBlank
+	@Column(name = "email" , unique = true, nullable = false)
+	private String email;
+	
+	@NotBlank
 	@Column(name = "password")
 	private String password;
 
-	@OneToMany (mappedBy = "player", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+	@OneToMany (mappedBy = "player", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH, CascadeType.REMOVE})
 	private List<Roll> rolls;
 	
-	public Player(String name, LocalDateTime registrationDate) {
+	public Player(String name, LocalDateTime registrationDate, String email) {
 		this.name = name;
 		this.registrationDate = registrationDate;
+		this.email = email;
 		rolls = new ArrayList<>();
+	}
+	
+	public Player (int id) {
+		this.id = id;
 	}
 	
 	public Player () {}
@@ -96,25 +103,11 @@ public class Player implements Serializable {
 		this.password = password;
 	}
 	
-	@Override
-	public String toString() {
-		return "Player [id=" + id + ", name=" + name + "]";
+	public String getEmail() {
+		return email;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(id, name);
+	public void setEmail(String email) {
+		this.email = email;
 	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Player other = (Player) obj;
-		return Objects.equals(id, other.id) && Objects.equals(name, other.name);
-	}	
 }

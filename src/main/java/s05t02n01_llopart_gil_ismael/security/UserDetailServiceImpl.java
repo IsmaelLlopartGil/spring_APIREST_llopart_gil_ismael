@@ -15,11 +15,11 @@ public class UserDetailServiceImpl implements UserDetailsService{
 	PlayerRepositoryMysql playerRepository;
 	
 	@Override
-	public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		
 		Player player = playerRepository
-			.findOneByName(name)
-			.orElseThrow(() -> new UsernameNotFoundException("L'usuari amb nom "+ name + "no existeix."));
+			.findOneByEmail(email)
+			.orElseThrow(() -> new UsernameNotFoundException("L'usuari amb email "+ email + "no existeix."));
 		
 		return new UserDetailsImpl(player);
 	}

@@ -18,7 +18,7 @@ public class TokenUtils {
 	private final static Long ACCESS_TOKEN_VALIDITY_SECONDS = 2_592_000L;
 	
 	
-	public static String createToken (String name) {
+	public static String createToken (String name, String email ) {
 		long expirationTime = ACCESS_TOKEN_VALIDITY_SECONDS * 1_000;
 		Date expirationDate = new Date(System.currentTimeMillis() + expirationTime);
 		Map<String, Object> extra = new HashMap<>();
@@ -26,7 +26,7 @@ public class TokenUtils {
 		
 		 
 		return Jwts.builder()
-				.setSubject(name)
+				.setSubject(email)
 				.setExpiration(expirationDate)
 				.addClaims(extra)
 				.signWith(Keys.hmacShaKeyFor(ACCESS_TOKEN_SECRET.getBytes()))
@@ -42,9 +42,9 @@ public class TokenUtils {
 					.parseClaimsJws(token)
 					.getBody();
 			
-			String name = claims.getSubject();
+			String email = claims.getSubject();
 			
-			return  new UsernamePasswordAuthenticationToken(name, null, Collections.emptyList());
+			return  new UsernamePasswordAuthenticationToken(email, null, Collections.emptyList());
 			
 		} catch (JwtException e) {
 			return null;

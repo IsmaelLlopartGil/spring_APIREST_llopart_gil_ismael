@@ -3,7 +3,8 @@ package s05t02n01_llopart_gil_ismael.model.dto;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
+
+import jakarta.validation.constraints.NotBlank;
 
 public class PlayerDto implements Serializable{
 
@@ -12,6 +13,9 @@ public class PlayerDto implements Serializable{
 	private int id;
 	private String name;
 	private LocalDateTime registrationDate;
+	@NotBlank
+	private String email;
+	@NotBlank
 	private String password;
 	private List<RollDto> rollList;
 	
@@ -53,33 +57,19 @@ public class PlayerDto implements Serializable{
 		return serialVersionUID;
 	}
 
-	@Override
-	public String toString() {
-		return "PlayerDto [id=" + id + "]";
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		PlayerDto other = (PlayerDto) obj;
-		return id == other.id;
-	}
-
 	public String getPassword() {
 		return password;
 	}
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }
