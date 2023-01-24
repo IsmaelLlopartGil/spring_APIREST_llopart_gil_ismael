@@ -7,34 +7,27 @@ public class RollDto implements Serializable {
 
 	private static final long serialVersionUID = 8859548414568852469L;
 
-	private int id;
+	private String id;
 	private int firstDice;
 	private int secondDice;
 	private int result;
-	private int playerId;
 
-
-	public RollDto (int playerId) {
+	public RollDto () {
 		SecureRandom secureRandom = new SecureRandom();
 		firstDice = secureRandom.nextInt(6 - 1) + 1;
 		secondDice = secureRandom.nextInt(6 - 1) + 1;
 		setResult();
-		this.playerId = playerId;
-	}
-	
-	public RollDto() {
-		
 	}
 	
 	public boolean isWinner () {
 		return result == 7;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -64,13 +57,5 @@ public class RollDto implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
-	}
-	
-	public int getPlayerId() {
-		return playerId;
-	}
-
-	public void setPlayerId(int playerId) {
-		this.playerId = playerId;
 	}
 }

@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import s05t02n01_llopart_gil_ismael.model.dto.PlayerCreationDto;
 import s05t02n01_llopart_gil_ismael.model.dto.PlayerDto;
 import s05t02n01_llopart_gil_ismael.model.services.PlayerService;
@@ -32,8 +31,6 @@ public class JocDelSetController {
 		} 
 	
 		return ResponseEntity.ok(optionalPlayerDto.get());	
-	}
-	
-	
+	}	
 }
 

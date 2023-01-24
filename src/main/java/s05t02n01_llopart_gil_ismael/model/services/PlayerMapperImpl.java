@@ -41,7 +41,7 @@ public class PlayerMapperImpl implements PlayerMapper {
 		player.setRegistrationDate(playerDto.getRegistrationDate());
 		player.setPassword(playerDto.getPassword());
 		player.setEmail(playerDto.getEmail());
-		player.setRolls(rollMapper.convertToListEntity(playerDto.getRolls(), player));
+		player.setRolls(rollMapper.convertToListEntity(playerDto.getRolls()));
 		return player;
 	}
 	

@@ -7,13 +7,13 @@ import org.springframework.stereotype.Service;
 import s05t02n01_llopart_gil_ismael.model.dto.PlayerCreationDto;
 import s05t02n01_llopart_gil_ismael.model.dto.PlayerDto;
 import s05t02n01_llopart_gil_ismael.model.dto.PlayerNameAndSuccessRateDto;
-import s05t02n01_llopart_gil_ismael.model.repository.PlayerRepositoryMysql;
+import s05t02n01_llopart_gil_ismael.model.repository.PlayerRepositoryMongoDB;
 
 @Service
 public class PlayerServiceImpl implements PlayerService{
 
 	@Autowired
-	PlayerRepositoryMysql playerRepositoryMysql;
+	PlayerRepositoryMongoDB playerRepositoryMysql;
 	
 	@Autowired
 	PlayerMapper playerMapper;
@@ -25,12 +25,12 @@ public class PlayerServiceImpl implements PlayerService{
 	
 	@Override
 	public void save(PlayerCreationDto playerCreationDto) {
-		playerRepositoryMysql.save(playerMapper.convertToEntity(playerCreationDto));
+		playerRepositoryMysql.insert(playerMapper.convertToEntity(playerCreationDto));
 	}
 
 
 	@Override
-	public Optional<PlayerDto> findById(int id) {
+	public Optional<PlayerDto> findById(String id) {
 		return playerMapper.convertToOptionalDto(playerRepositoryMysql.findById(id));
 	}
 	
@@ -46,7 +46,7 @@ public class PlayerServiceImpl implements PlayerService{
 
 
 	@Override
-	public void deleteById(int id) {
+	public void deleteById(String id) {
 		playerRepositoryMysql.deleteById(id);
 		
 	}

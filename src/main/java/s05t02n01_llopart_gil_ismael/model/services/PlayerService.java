@@ -12,9 +12,9 @@ public interface PlayerService {
 	
 	public void save(PlayerCreationDto playerCreationDto);
 
-	public Optional<PlayerDto> findById(int id);
+	public Optional<PlayerDto> findById(String id);
 
-	public void deleteById(int id);
+	public void deleteById(String id);
 
 	public List<PlayerDto> findAll();
 

@@ -3,7 +3,6 @@ package s05t02n01_llopart_gil_ismael.model.services;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Component;
-import s05t02n01_llopart_gil_ismael.model.domain.Player;
 import s05t02n01_llopart_gil_ismael.model.domain.Roll;
 import s05t02n01_llopart_gil_ismael.model.dto.RollDto;
 
@@ -25,11 +24,11 @@ public class RollMapperImpl implements RollMapper{
 	}
 
 	@Override
-	public List<Roll> convertToListEntity(List<RollDto> rollListDto, Player player) {
+	public List<Roll> convertToListEntity(List<RollDto> rollListDto) {
 		List<Roll> rollList = new ArrayList<>();
 		
 		for (RollDto rollDto : rollListDto) {
-			rollList.add(convertToEntity(rollDto, player));
+			rollList.add(convertToEntity(rollDto));
 		}
 		
 		return rollList;
@@ -38,7 +37,6 @@ public class RollMapperImpl implements RollMapper{
 	@Override
 	public RollDto convertToDto(Roll roll) {
 		RollDto rollDto = new RollDto();
-		rollDto.setPlayerId(roll.getPlayer().getId());
 		rollDto.setId(roll.getId());
 		rollDto.setFirstDice(roll.getFirstDice());
 		rollDto.setSecondDice(roll.getSecondDice());
@@ -47,9 +45,8 @@ public class RollMapperImpl implements RollMapper{
 	}
 
 	@Override
-	public Roll convertToEntity(RollDto rollDto, Player player) {
+	public Roll convertToEntity(RollDto rollDto) {
 		Roll roll = new Roll ();
-		roll.setPlayer(player);
 		roll.setId(rollDto.getId());
 		roll.setFirstDice(rollDto.getFirstDice());
 		roll.setSecondDice(rollDto.getSecondDice());

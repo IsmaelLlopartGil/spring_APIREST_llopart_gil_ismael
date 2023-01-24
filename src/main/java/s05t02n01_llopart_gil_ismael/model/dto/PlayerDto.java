@@ -10,7 +10,7 @@ public class PlayerDto implements Serializable{
 
 	private static final long serialVersionUID = -258020059864984179L;
 
-	private int id;
+	private String id;
 	private String name;
 	private LocalDateTime registrationDate;
 	@NotBlank
@@ -21,11 +21,11 @@ public class PlayerDto implements Serializable{
 	
 	public PlayerDto () {}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -71,5 +71,5 @@ public class PlayerDto implements Serializable{
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
+	}	
 }

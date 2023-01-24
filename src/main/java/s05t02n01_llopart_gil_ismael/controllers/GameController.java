@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import s05t02n01_llopart_gil_ismael.model.dto.PlayerDto;
 import s05t02n01_llopart_gil_ismael.model.dto.RollDto;
-import s05t02n01_llopart_gil_ismael.model.services.GamesService;
+import s05t02n01_llopart_gil_ismael.model.services.RollService;
 import s05t02n01_llopart_gil_ismael.model.services.PlayerService;
 
 @RestController
@@ -16,18 +16,24 @@ import s05t02n01_llopart_gil_ismael.model.services.PlayerService;
 public class GameController {
 	
 	@Autowired
-	GamesService gamesService;
+	RollService gamesService;
 	
 	@Autowired
 	PlayerService playerService;
 	
 	@PostMapping
-	public ResponseEntity<RollDto>  rollDice (@PathVariable int id) {
+	public ResponseEntity<RollDto>  rollDice (@PathVariable String id) {
 		Optional<PlayerDto> optionalPlayerDto = playerService.findById(id);
 		
 		if (optionalPlayerDto.isPresent()) {
-			RollDto rollDto = new RollDto(id);
-			gamesService.save(rollDto);
+			RollDto rollDto = new RollDto();
+			rollDto = gamesService.save(rollDto);
+			
+			List<RollDto> rollList = optionalPlayerDto.get().getRolls();
+			rollList.add(rollDto);
+			optionalPlayerDto.get().setRolls(rollList);
+			playerService.save(optionalPlayerDto.get());
+
 			return ResponseEntity.ok(rollDto);
 		}
 			
@@ -35,7 +41,7 @@ public class GameController {
 	}
 	
 	@DeleteMapping
-	public ResponseEntity<PlayerDto>  deleteRolls (@PathVariable int id) {
+	public ResponseEntity<PlayerDto>  deleteRolls (@PathVariable String id) {
 		Optional<PlayerDto> optionalPlayerDto = playerService.findById(id);
 		
 		if (optionalPlayerDto.isPresent()) {
@@ -49,7 +55,7 @@ public class GameController {
 	}
 	
 	@GetMapping
-	public ResponseEntity<List<RollDto>>  getAllRolls (@PathVariable int id) {
+	public ResponseEntity<List<RollDto>>  getAllRolls (@PathVariable String id) {
 		Optional<PlayerDto> optionalPlayerDto = playerService.findById(id);
 		
 		if (optionalPlayerDto.isPresent()) {		

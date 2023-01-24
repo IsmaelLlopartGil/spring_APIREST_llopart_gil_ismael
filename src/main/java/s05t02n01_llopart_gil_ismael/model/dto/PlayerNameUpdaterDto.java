@@ -1,7 +1,6 @@
 package s05t02n01_llopart_gil_ismael.model.dto;
 
 import java.io.Serializable;
-
 import jakarta.validation.constraints.NotBlank;
 
 public class PlayerNameUpdaterDto implements Serializable {

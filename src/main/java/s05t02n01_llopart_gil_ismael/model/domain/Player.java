@@ -4,43 +4,41 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import jakarta.validation.constraints.NotBlank;
 
-@Entity
-@Table(name = "player")
+@Document("players")
 public class Player implements Serializable {
 
 	private static final long serialVersionUID = -153224905164150410L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", unique = true, nullable = false)
-	private Integer id;
+	private String id;
 
-	@Column(name = "name")
 	private String name;
 
-	@Column(name = "registration_date")
 	private LocalDateTime registrationDate;
 	
 	@NotBlank
-	@Column(name = "email" , unique = true, nullable = false)
 	private String email;
 	
 	@NotBlank
-	@Column(name = "password")
 	private String password;
 
-	@OneToMany (mappedBy = "player", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH, CascadeType.REMOVE})
+	@DBRef
 	private List<Roll> rolls;
+	
+	public Player(String id, String name, LocalDateTime registrationDate, String email, String password, List<Roll> rolls) {
+		this.id=id;
+		this.name = name;
+		this.registrationDate = registrationDate;
+		this.email = email;
+		this.password=password;
+		this.rolls=rolls;
+	}
 	
 	public Player(String name, LocalDateTime registrationDate, String email) {
 		this.name = name;
@@ -49,7 +47,7 @@ public class Player implements Serializable {
 		rolls = new ArrayList<>();
 	}
 	
-	public Player (int id) {
+	public Player (String id) {
 		this.id = id;
 	}
 	
@@ -59,11 +57,11 @@ public class Player implements Serializable {
 		rolls.add(roll);
 	}
 	
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
