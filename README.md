@@ -6,6 +6,7 @@ s05t02n01 Llopart Gil Ismael
 crea l'usuari per defecte i el retorna.
 
 2- Petició POST a http://localhost/login amb les dades següents:
+
 {
      "email": "default_user@jocdelset.edu",
      "password": "pass"
