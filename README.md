@@ -1,5 +1,4 @@
-Exercici  
-
+ 
 Ús:
 
 1- Petició GET a http://localhost/load_default_user
