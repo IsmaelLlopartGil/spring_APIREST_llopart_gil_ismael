@@ -15,10 +15,3 @@ crea l'usuari per defecte i el retorna.
 3- Guardar el bearer token que retorna i enviar-lo a cada petició.
 
 
-Fonts:
-
-JWT ->  https://www.youtube.com/watch?v=_p-Odh3MZJc
-
-Mongodb -> https://docs.spring.io/spring-data/mongodb/docs/2.1.4.RELEASE/reference/html/#mongo-template.save-update-remove
-
-
